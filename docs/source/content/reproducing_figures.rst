@@ -7,42 +7,52 @@ runs end-to-end from released data or loads a gated intermediate produced by the
 cited ``scripts/`` stage, then renders the panels by calling that figure's builders
 under ``reproduction/figure_NN/``.
 
+For a visual tour of what each figure shows, see :doc:`gallery`.
+
 .. list-table::
    :header-rows: 1
-   :widths: 10 46 22 22
+   :widths: 6 42 24 14 14
 
    * - Fig
-     - Notebook
+     - Notebook (GitHub)
      - Subject
      - Checks
+     - nbviewer
    * - 1
-     - ``fig01_fungal_lm_corpus_architecture``
+     - `fig01_fungal_lm_corpus_architecture <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig01_fungal_lm_corpus_architecture.ipynb>`__
      - Corpus + architecture
      - 12/12
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig01_fungal_lm_corpus_architecture.ipynb>`__
    * - 2
-     - ``fig02_lm_conserved_motifs``
+     - `fig02_lm_conserved_motifs <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig02_lm_conserved_motifs.ipynb>`__
      - LM-discovered motifs
      - 21/21
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig02_lm_conserved_motifs.ipynb>`__
    * - 3
-     - ``fig03_supervised_rnaseq_prediction``
+     - `fig03_supervised_rnaseq_prediction <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig03_supervised_rnaseq_prediction.ipynb>`__
      - RNA-seq prediction
      - 33/33
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig03_supervised_rnaseq_prediction.ipynb>`__
    * - 4
-     - ``fig04_promoter_splicing_motifs``
+     - `fig04_promoter_splicing_motifs <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig04_promoter_splicing_motifs.ipynb>`__
      - Promoter + splicing motifs
      - 38/38
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig04_promoter_splicing_motifs.ipynb>`__
    * - 5
-     - ``fig05_timecourse_tf_induction``
+     - `fig05_timecourse_tf_induction <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig05_timecourse_tf_induction.ipynb>`__
      - MSN2/MSN4 time course
      - 10/10
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig05_timecourse_tf_induction.ipynb>`__
    * - 6
-     - ``fig06_mpra_variant_effects``
+     - `fig06_mpra_variant_effects <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig06_mpra_variant_effects.ipynb>`__
      - MPRA variant effects
      - 26/26
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig06_mpra_variant_effects.ipynb>`__
    * - 7
-     - ``fig07_eqtl_variant_effects``
+     - `fig07_eqtl_variant_effects <https://github.com/calico/shorkie-paper/blob/main/notebooks/fig07_eqtl_variant_effects.ipynb>`__
      - cis-eQTL variant effects
      - 66/66
+     - `read <https://nbviewer.org/github/calico/shorkie-paper/blob/main/notebooks/fig07_eqtl_variant_effects.ipynb>`__
 
 How verification works
 ----------------------

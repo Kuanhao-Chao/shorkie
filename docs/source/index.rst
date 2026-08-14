@@ -55,6 +55,13 @@ What you can do with Shorkie
       Transfer the LM trunk to your own RNA-seq / ChIP data, including a small
       demo you can actually run.
 
+   .. grid-item-card:: 📊 See the analysis
+      :link: content/gallery
+      :link-type: doc
+
+      A figure-by-figure tour of the paper, each linked to an executed notebook
+      that regenerates it and re-checks the published numbers.
+
 ----
 
 Quick start
@@ -123,6 +130,7 @@ All three are public and catalogued with checksums — see :doc:`content/models`
    :maxdepth: 2
    :caption: Background
 
+   content/gallery
    content/behind_scenes
    content/data_resources
    content/reproducing_figures
