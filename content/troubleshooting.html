@@ -1,0 +1,639 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Citation" href="citation.html"><link rel="prev" title="FAQ" href="faq.html">
+        <link rel="prefetch" href="../_static/shorkie_logo.png" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Troubleshooting - Shorkie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Shorkie</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/shorkie_logo.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Released models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Shorkie</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shorkie_usage.html">Using Shorkie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shorkie_lm_usage.html">Using Shorkie_LM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuning.html">Fine-tuning on your own RNA-seq</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gallery.html">Analysis gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="behind_scenes.html">How Shorkie was trained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_resources.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducing_figures.html">Reproducing the paper figures</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/calico/shorkie-paper/blob/main/docs/source/content/troubleshooting.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/calico/shorkie-paper/edit/main/docs/source/content/troubleshooting.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h1>
+<p>Organised by the <strong>error message you actually see</strong>. Each entry gives the cause, the fix, and a link to
+the page that explains it properly.</p>
+<p>If nothing here matches, please <a class="reference external" href="https://github.com/calico/shorkie-paper/issues">open an issue</a> with the command you ran, the full traceback, and how
+you obtained the weights.</p>
+<hr class="docutils" />
+<section id="installation-and-setup">
+<h2>Installation and setup<a class="headerlink" href="#installation-and-setup" title="Link to this heading">¶</a></h2>
+<section id="fatal-could-not-read-from-remote-repository-when-cloning">
+<h3><code class="docutils literal notranslate"><span class="pre">fatal:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">read</span> <span class="pre">from</span> <span class="pre">remote</span> <span class="pre">repository</span></code> when cloning<a class="headerlink" href="#fatal-could-not-read-from-remote-repository-when-cloning" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Cloning into &#39;.../external/baskerville-yeast&#39;...
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights and the repository exists.
+fatal: clone of &#39;git@github.com:calico/baskerville-yeast.git&#39; into submodule path ... failed
+</pre></div>
+</div>
+<p><strong>Cause.</strong> Older checkouts pinned the submodules to SSH URLs, so <code class="docutils literal notranslate"><span class="pre">--recurse-submodules</span></code> tried SSH even
+when you cloned over HTTPS. Without GitHub SSH keys it fails and <code class="docutils literal notranslate"><span class="pre">external/</span></code> is left empty.</p>
+<p><strong>Fix.</strong> This is fixed on <code class="docutils literal notranslate"><span class="pre">main</span></code> — the submodules now use HTTPS. If you have an older clone:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+git<span class="w"> </span>submodule<span class="w"> </span>sync<span class="w"> </span>--recursive
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+<p>Both repositories (<a class="reference external" href="https://github.com/calico/baskerville-yeast">baskerville-yeast</a> and
+<a class="reference external" href="https://github.com/calico/westminster">westminster</a>) are public, so no credentials are needed.</p>
+</section>
+<section id="modulenotfounderror-no-module-named-baskerville">
+<h3><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'baskerville'</span></code><a class="headerlink" href="#modulenotfounderror-no-module-named-baskerville" title="Link to this heading">¶</a></h3>
+<p>The submodules exist but weren’t installed. Order matters — model code first:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>external/baskerville-yeast<span class="w"> </span>-e<span class="w"> </span>external/westminster<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">external/</span></code> is empty, see the previous entry. → <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a></p>
+</section>
+<section id="modulenotfounderror-no-module-named-shorkie">
+<h3><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'shorkie'</span></code><a class="headerlink" href="#modulenotfounderror-no-module-named-shorkie" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> wasn’t run, or you’re in a different environment than the one you installed into.
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">yeast_ml</span></code>, then re-run it. → <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="downloads">
+<h2>Downloads<a class="headerlink" href="#downloads" title="Link to this heading">¶</a></h2>
+<section id="bucket-is-a-requester-pays-bucket-but-no-user-project-provided">
+<h3><code class="docutils literal notranslate"><span class="pre">Bucket</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">requester</span> <span class="pre">pays</span> <span class="pre">bucket</span> <span class="pre">but</span> <span class="pre">no</span> <span class="pre">user</span> <span class="pre">project</span> <span class="pre">provided</span></code><a class="headerlink" href="#bucket-is-a-requester-pays-bucket-but-no-user-project-provided" title="Link to this heading">¶</a></h3>
+<p><strong>Cause.</strong> Everything except the model weights lives in <code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper</span></code>, which is requester-pays.</p>
+<p><strong>Fix.</strong> Pass a <strong>billing-enabled</strong> GCP project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>data/download.sh<span class="w"> </span>--genome<span class="w"> </span>-u<span class="w"> </span>my-project
+</pre></div>
+</div>
+<p>Being a member of a project isn’t sufficient — billing must be enabled on it, or you get
+<code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">billing</span> <span class="pre">account</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">owning</span> <span class="pre">project</span> <span class="pre">is</span> <span class="pre">disabled</span></code>. Model weights need no <code class="docutils literal notranslate"><span class="pre">-u</span></code> at all;
+they’re on the public <code class="docutils literal notranslate"><span class="pre">gs://seqnn-share</span></code>.</p>
+<p><strong>No access to Google Cloud at all?</strong> That’s a supported case — see <a class="reference internal" href="data_resources.html"><span class="doc">Datasets</span></a>.</p>
+</section>
+<section id="md5-fail-file-got-want">
+<h3><code class="docutils literal notranslate"><span class="pre">md5</span> <span class="pre">FAIL</span> <span class="pre">&lt;file&gt;</span> <span class="pre">(got</span> <span class="pre">…</span> <span class="pre">want</span> <span class="pre">…)</span></code><a class="headerlink" href="#md5-fail-file-got-want" title="Link to this heading">¶</a></h3>
+<p>A truncated or corrupted download. Delete the file and re-run; <code class="docutils literal notranslate"><span class="pre">download.sh</span></code> verifies every model file
+against <code class="docutils literal notranslate"><span class="pre">data/manifest.json</span></code> as it lands. Persistent failures on the same file are worth an issue.</p>
+</section>
+<section id="gsutil-required-for-gs-requester-pays">
+<h3><code class="docutils literal notranslate"><span class="pre">gsutil</span> <span class="pre">required</span> <span class="pre">for</span> <span class="pre">gs://…</span> <span class="pre">(requester-pays)</span></code><a class="headerlink" href="#gsutil-required-for-gs-requester-pays" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gsutil</span></code> isn’t on <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. Install the Google Cloud SDK, or point at an existing install with
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">SHORKIE_GSUTIL=/path/to/gsutil</span></code>. Public model files fall back to <code class="docutils literal notranslate"><span class="pre">wget</span></code>/<code class="docutils literal notranslate"><span class="pre">curl</span></code>; the
+requester-pays datasets genuinely need <code class="docutils literal notranslate"><span class="pre">gsutil</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="loading-models">
+<h2>Loading models<a class="headerlink" href="#loading-models" title="Link to this heading">¶</a></h2>
+<section id="error-loading-weights-by-name-axes-don-t-match-array">
+<span id="axes-dont-match"></span><h3><code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">loading</span> <span class="pre">weights</span> <span class="pre">by</span> <span class="pre">name:</span> <span class="pre">axes</span> <span class="pre">don't</span> <span class="pre">match</span> <span class="pre">array</span></code><a class="headerlink" href="#error-loading-weights-by-name-axes-don-t-match-array" title="Link to this heading">¶</a></h3>
+<p><strong>The single most common problem.</strong> Shorkie does not take plain 4-channel DNA. Its input is
+<code class="docutils literal notranslate"><span class="pre">(16384,</span> <span class="pre">170)</span></code>: 4 DNA one-hot channels <strong>plus 166 species-identity channels</strong>. If you copy
+<code class="docutils literal notranslate"><span class="pre">params.json</span></code> and set <code class="docutils literal notranslate"><span class="pre">num_features</span> <span class="pre">=</span> <span class="pre">4</span></code>, the first convolution has the wrong shape and the weights
+refuse to load.</p>
+<p><strong>Fix.</strong> Set <code class="docutils literal notranslate"><span class="pre">num_features</span></code> explicitly before constructing the model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;num_features&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">170</span>     <span class="c1"># 4 DNA + 165 species + 1</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">seqnn</span><span class="o">.</span><span class="n">SeqNN</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">trunk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">by_name</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Better, let the helper build the input for you — it handles the species channel:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shorkie.models.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_input</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">make_input</span><span class="p">(</span><span class="n">fasta</span><span class="p">,</span> <span class="s2">&quot;chrI&quot;</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">16384</span><span class="p">)</span>   <span class="c1"># -&gt; (16384, 170)</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_features</span></code> is <strong>not recorded in params.json</strong> — you must supply it, and it is corpus-specific:
+<code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">(DNA)</span> <span class="pre">+</span> <span class="pre">num_species</span> <span class="pre">+</span> <span class="pre">1</span></code>.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Corpus</p></th>
+<th class="head"><p>Species</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">num_features</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Shorkie</strong> / <strong>Shorkie_LM</strong> / <strong>Shorkie_Random_Init</strong></p></td>
+<td><p>165_Saccharomycetales</p></td>
+<td><p>165</p></td>
+<td><p><strong>170</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">R64_yeast__unet_small</span></code></p></td>
+<td><p>R64</p></td>
+<td><p>1</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">80_strains__unet_small</span></code></p></td>
+<td><p>80_strains</p></td>
+<td><p>80</p></td>
+<td><p>85</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1341_Fungus__unet_small</span></code> / <code class="docutils literal notranslate"><span class="pre">…_bert_drop</span></code></p></td>
+<td><p>1341_Fungus</p></td>
+<td><p>1361</p></td>
+<td><p>1366</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>→ <a class="reference internal" href="shorkie_usage.html"><span class="doc">Using Shorkie</span></a> · <a class="reference internal" href="models.html"><span class="doc">Released models</span></a></p>
+</section>
+<section id="the-model-loads-but-predictions-look-like-noise">
+<h3>The model loads, but predictions look like noise<a class="headerlink" href="#the-model-loads-but-predictions-look-like-noise" title="Link to this heading">¶</a></h3>
+<p>Same root cause as above, failing silently. If you build a 4-channel input and pad the rest with zeros
+the shapes match, so nothing errors — but the species channel is never set, and the model has never seen
+such an input. Use <code class="docutils literal notranslate"><span class="pre">make_input</span></code>, which sets column 114 for <em>S. cerevisiae</em>.</p>
+</section>
+<section id="filenotfounderror-shorkie-lm-train-params-json">
+<h3><code class="docutils literal notranslate"><span class="pre">FileNotFoundError:</span> <span class="pre">.../shorkie_lm/train/params.json</span></code><a class="headerlink" href="#filenotfounderror-shorkie-lm-train-params-json" title="Link to this heading">¶</a></h3>
+<p>The released layout puts <code class="docutils literal notranslate"><span class="pre">params.json</span></code> at the <strong>model-dir root</strong>, with only the checkpoint under
+<code class="docutils literal notranslate"><span class="pre">train/</span></code>. Some author work-dirs put it under <code class="docutils literal notranslate"><span class="pre">train/</span></code> too, so accept either:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params_file</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lm_dir</span><span class="si">}</span><span class="s2">/params.json&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lm_dir</span><span class="si">}</span><span class="s2">/train/params.json&quot;</span><span class="p">)</span>
+                   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>→ <a class="reference internal" href="models.html"><span class="doc">Released models</span></a></p>
+</section>
+<section id="loading-8-folds-is-very-slow-or-runs-out-of-memory">
+<h3>Loading 8 folds is very slow, or runs out of memory<a class="headerlink" href="#loading-8-folds-is-very-slow-or-runs-out-of-memory" title="Link to this heading">¶</a></h3>
+<p>Expected: the ensemble is 8 separate models and takes a couple of minutes on CPU. While iterating, use
+<code class="docutils literal notranslate"><span class="pre">num_folds=1</span></code> — noisier predictions, identical API. Load the ensemble <strong>once</strong> and loop over your
+variants; loading dominates the cost. → <a class="reference internal" href="shorkie_usage.html"><span class="doc">Using Shorkie</span></a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="genome-and-annotation">
+<h2>Genome and annotation<a class="headerlink" href="#genome-and-annotation" title="Link to this heading">¶</a></h2>
+<section id="keyerror-valueerror-on-a-chromosome-or-gene-name">
+<h3><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> / <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> on a chromosome or gene name<a class="headerlink" href="#keyerror-valueerror-on-a-chromosome-or-gene-name" title="Link to this heading">¶</a></h3>
+<p>Almost always a naming mismatch. <strong>The two reference files use different conventions, and this is
+deliberate:</strong></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Naming</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GCA_000146045_2.cleaned.fasta</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">chrI</span></code> … <code class="docutils literal notranslate"><span class="pre">chrXVI</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">GCA_000146045_2.59.gtf</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">I</span></code> … <code class="docutils literal notranslate"><span class="pre">XVI</span></code> (plus <code class="docutils literal notranslate"><span class="pre">Mito</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A genome downloaded straight from Ensembl or SGD will not match. Use the released copies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>data/download.sh<span class="w"> </span>--genome<span class="w"> </span>-u<span class="w"> </span>&lt;your-gcp-project&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--gene</span></code> must also name a gene present in the GTF, since logSED is summed over that gene’s output bins.
+→ <a class="reference internal" href="data_resources.html"><span class="doc">Datasets</span></a></p>
+</section>
+<section id="e-fai-build3-failed-to-open-fasta-index">
+<h3><code class="docutils literal notranslate"><span class="pre">[E::fai_build3]</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">FASTA</span> <span class="pre">index</span></code><a class="headerlink" href="#e-fai-build3-failed-to-open-fasta-index" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pysam</span></code> needs a <code class="docutils literal notranslate"><span class="pre">.fai</span></code> beside the FASTA. <code class="docutils literal notranslate"><span class="pre">download.sh</span> <span class="pre">--genome</span></code> builds it for you; otherwise:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>samtools<span class="w"> </span>faidx<span class="w"> </span>GCA_000146045_2.cleaned.fasta
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-and-tfrecords">
+<h2>Data and TFRecords<a class="headerlink" href="#data-and-tfrecords" title="Link to this heading">¶</a></h2>
+<section id="reading-a-tfrecord-yields-zero-records-with-no-error">
+<h3>Reading a TFRecord yields zero records, with no error<a class="headerlink" href="#reading-a-tfrecord-yields-zero-records-with-no-error" title="Link to this heading">¶</a></h3>
+<p>The corpus TFRecords are <strong>ZLIB-compressed</strong>. Without the compression type TensorFlow returns an empty
+dataset rather than raising:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">compression_type</span><span class="o">=</span><span class="s2">&quot;ZLIB&quot;</span><span class="p">)</span>   <span class="c1"># required</span>
+</pre></div>
+</div>
+<p>→ <a class="reference internal" href="data_resources.html"><span class="doc">Datasets</span></a></p>
+</section>
+<section id="fungus-tfrecords-aren-t-where-the-other-tiers-are">
+<h3><code class="docutils literal notranslate"><span class="pre">1341_Fungus</span></code> TFRecords aren’t where the other tiers’ are<a class="headerlink" href="#fungus-tfrecords-aren-t-where-the-other-tiers-are" title="Link to this heading">¶</a></h3>
+<p>That tier nests one level deeper, under a <code class="docutils literal notranslate"><span class="pre">1342_Fungus/</span></code> subdirectory — a different number — so
+<code class="docutils literal notranslate"><span class="pre">--lm-corpus</span> <span class="pre">1341_Fungus</span></code> gives you
+<code class="docutils literal notranslate"><span class="pre">…/processed/1341_Fungus/1342_Fungus/*.tfr</span></code> while the other three land flat. A fixed-depth glob will
+miss them. (The label is historical too: the cleaned corpus holds <strong>1,361</strong> assemblies.)
+→ <a class="reference internal" href="data_resources.html"><span class="doc">Datasets</span></a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="fine-tuning">
+<h2>Fine-tuning<a class="headerlink" href="#fine-tuning" title="Link to this heading">¶</a></h2>
+<section id="skipping-loading-weights-for-layer-dense-22-expects-384-5215-received-384-384">
+<h3><code class="docutils literal notranslate"><span class="pre">Skipping</span> <span class="pre">loading</span> <span class="pre">weights</span> <span class="pre">for</span> <span class="pre">layer</span> <span class="pre">…</span> <span class="pre">dense_22</span> <span class="pre">…</span> <span class="pre">expects</span> <span class="pre">(384,</span> <span class="pre">5215),</span> <span class="pre">received</span> <span class="pre">(384,</span> <span class="pre">384)</span></code><a class="headerlink" href="#skipping-loading-weights-for-layer-dense-22-expects-384-5215-received-384-384" title="Link to this heading">¶</a></h3>
+<p><strong>This is expected and means it’s working.</strong> <code class="docutils literal notranslate"><span class="pre">--restore</span></code> transfers the pretrained LM <em>trunk</em>; the
+supervised head is new and has a different shape, so it is deliberately not restored. Seeing this warning
+confirms fine-tuning is doing the right thing. → <a class="reference internal" href="finetuning.html"><span class="doc">Fine-tuning on your own RNA-seq</span></a></p>
+</section>
+<section id="training-loss-barely-moves-correlation-near-zero">
+<h3>Training loss barely moves / correlation near zero<a class="headerlink" href="#training-loss-barely-moves-correlation-near-zero" title="Link to this heading">¶</a></h3>
+<p>If you’re running <code class="docutils literal notranslate"><span class="pre">examples/6_finetune_minidemo.sh</span></code>, that’s the point — 8 training sequences and two
+epochs cannot learn anything; it exists to prove the pipeline runs. For a real model use the production
+recipe. On your own data, check that <code class="docutils literal notranslate"><span class="pre">warmup_steps</span></code> is sensible for your run length: the released value
+is 5000, so a short run never leaves warmup. → <a class="reference internal" href="finetuning.html"><span class="doc">Fine-tuning on your own RNA-seq</span></a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="reproducing-figures">
+<h2>Reproducing figures<a class="headerlink" href="#reproducing-figures" title="Link to this heading">¶</a></h2>
+<section id="a-notebook-says-an-input-is-missing-and-names-a-script-to-run">
+<h3>A notebook says an input is missing and names a script to run<a class="headerlink" href="#a-notebook-says-an-input-is-missing-and-names-a-script-to-run" title="Link to this heading">¶</a></h3>
+<p>Working as intended. Figures 6 and 7 run end-to-end from released data; the others consume a gated
+intermediate (ISM/MoDISco <code class="docutils literal notranslate"><span class="pre">.h5</span></code>, embeddings, training logs) that isn’t in the public release. Run the
+cited <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> stage, then point the relevant <code class="docutils literal notranslate"><span class="pre">results.*</span></code> key in <code class="docutils literal notranslate"><span class="pre">config/paths.yaml</span></code> at your
+output. → <a class="reference internal" href="reproducing_figures.html"><span class="doc">Reproducing the paper figures</span></a></p>
+</section>
+<section id="my-reproduced-number-differs-slightly-from-the-paper">
+<h3>My reproduced number differs slightly from the paper<a class="headerlink" href="#my-reproduced-number-differs-slightly-from-the-paper" title="Link to this heading">¶</a></h3>
+<p>First check which weights you loaded. Documented values come from the <strong>released</strong> weights; earlier
+versions of the repository resolved <code class="docutils literal notranslate"><span class="pre">models.shorkie_finetuned</span></code> to an author work-dir whose weights are
+<em>not</em> the released ones, which gave slightly different scores. That’s fixed, and a test now pins the
+config to the release layout. <code class="docutils literal notranslate"><span class="pre">num_folds</span></code> matters too — documented values use all 8.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="citation.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Citation</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="faq.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">FAQ</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Kuan-Hao Chao and the Shorkie authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/calico/shorkie-paper" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.011.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.441.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#installation-and-setup">Installation and setup</a><ul>
+<li><a class="reference internal" href="#fatal-could-not-read-from-remote-repository-when-cloning"><code class="docutils literal notranslate"><span class="pre">fatal:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">read</span> <span class="pre">from</span> <span class="pre">remote</span> <span class="pre">repository</span></code> when cloning</a></li>
+<li><a class="reference internal" href="#modulenotfounderror-no-module-named-baskerville"><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'baskerville'</span></code></a></li>
+<li><a class="reference internal" href="#modulenotfounderror-no-module-named-shorkie"><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'shorkie'</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#downloads">Downloads</a><ul>
+<li><a class="reference internal" href="#bucket-is-a-requester-pays-bucket-but-no-user-project-provided"><code class="docutils literal notranslate"><span class="pre">Bucket</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">requester</span> <span class="pre">pays</span> <span class="pre">bucket</span> <span class="pre">but</span> <span class="pre">no</span> <span class="pre">user</span> <span class="pre">project</span> <span class="pre">provided</span></code></a></li>
+<li><a class="reference internal" href="#md5-fail-file-got-want"><code class="docutils literal notranslate"><span class="pre">md5</span> <span class="pre">FAIL</span> <span class="pre">&lt;file&gt;</span> <span class="pre">(got</span> <span class="pre">…</span> <span class="pre">want</span> <span class="pre">…)</span></code></a></li>
+<li><a class="reference internal" href="#gsutil-required-for-gs-requester-pays"><code class="docutils literal notranslate"><span class="pre">gsutil</span> <span class="pre">required</span> <span class="pre">for</span> <span class="pre">gs://…</span> <span class="pre">(requester-pays)</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#loading-models">Loading models</a><ul>
+<li><a class="reference internal" href="#error-loading-weights-by-name-axes-don-t-match-array"><code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">loading</span> <span class="pre">weights</span> <span class="pre">by</span> <span class="pre">name:</span> <span class="pre">axes</span> <span class="pre">don't</span> <span class="pre">match</span> <span class="pre">array</span></code></a></li>
+<li><a class="reference internal" href="#the-model-loads-but-predictions-look-like-noise">The model loads, but predictions look like noise</a></li>
+<li><a class="reference internal" href="#filenotfounderror-shorkie-lm-train-params-json"><code class="docutils literal notranslate"><span class="pre">FileNotFoundError:</span> <span class="pre">.../shorkie_lm/train/params.json</span></code></a></li>
+<li><a class="reference internal" href="#loading-8-folds-is-very-slow-or-runs-out-of-memory">Loading 8 folds is very slow, or runs out of memory</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#genome-and-annotation">Genome and annotation</a><ul>
+<li><a class="reference internal" href="#keyerror-valueerror-on-a-chromosome-or-gene-name"><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> / <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> on a chromosome or gene name</a></li>
+<li><a class="reference internal" href="#e-fai-build3-failed-to-open-fasta-index"><code class="docutils literal notranslate"><span class="pre">[E::fai_build3]</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">FASTA</span> <span class="pre">index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-and-tfrecords">Data and TFRecords</a><ul>
+<li><a class="reference internal" href="#reading-a-tfrecord-yields-zero-records-with-no-error">Reading a TFRecord yields zero records, with no error</a></li>
+<li><a class="reference internal" href="#fungus-tfrecords-aren-t-where-the-other-tiers-are"><code class="docutils literal notranslate"><span class="pre">1341_Fungus</span></code> TFRecords aren’t where the other tiers’ are</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fine-tuning">Fine-tuning</a><ul>
+<li><a class="reference internal" href="#skipping-loading-weights-for-layer-dense-22-expects-384-5215-received-384-384"><code class="docutils literal notranslate"><span class="pre">Skipping</span> <span class="pre">loading</span> <span class="pre">weights</span> <span class="pre">for</span> <span class="pre">layer</span> <span class="pre">…</span> <span class="pre">dense_22</span> <span class="pre">…</span> <span class="pre">expects</span> <span class="pre">(384,</span> <span class="pre">5215),</span> <span class="pre">received</span> <span class="pre">(384,</span> <span class="pre">384)</span></code></a></li>
+<li><a class="reference internal" href="#training-loss-barely-moves-correlation-near-zero">Training loss barely moves / correlation near zero</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reproducing-figures">Reproducing figures</a><ul>
+<li><a class="reference internal" href="#a-notebook-says-an-input-is-missing-and-names-a-script-to-run">A notebook says an input is missing and names a script to run</a></li>
+<li><a class="reference internal" href="#my-reproduced-number-differs-slightly-from-the-paper">My reproduced number differs slightly from the paper</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=9ef64fc1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>

@@ -1,0 +1,791 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Reproducing the paper figures" href="reproducing_figures.html"><link rel="prev" title="How Shorkie was trained" href="behind_scenes.html">
+        <link rel="prefetch" href="../_static/shorkie_logo.png" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Datasets - Shorkie</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Shorkie</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/shorkie_logo.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Released models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Shorkie</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shorkie_usage.html">Using Shorkie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shorkie_lm_usage.html">Using Shorkie_LM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetuning.html">Fine-tuning on your own RNA-seq</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gallery.html">Analysis gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="behind_scenes.html">How Shorkie was trained</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproducing_figures.html">Reproducing the paper figures</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/calico/shorkie-paper/blob/main/docs/source/content/data_resources.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/calico/shorkie-paper/edit/main/docs/source/content/data_resources.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="datasets">
+<h1>Datasets<a class="headerlink" href="#datasets" title="Link to this heading">¶</a></h1>
+<p>Everything curated for this study, and how to get it. All of it is catalogued — with sizes, MD5s and
+destinations — in <a class="reference external" href="https://github.com/calico/shorkie-paper/blob/main/data/manifest.json">data/manifest.json</a>, which is exactly what
+<code class="docutils literal notranslate"><span class="pre">data/download.sh</span></code> reads and what <code class="docutils literal notranslate"><span class="pre">scripts/00_setup/verify_release.py</span></code> audits the buckets against.</p>
+<section id="at-a-glance">
+<h2>At a glance<a class="headerlink" href="#at-a-glance" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 12.0%" />
+<col style="width: 12.0%" />
+<col style="width: 42.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Access</p></th>
+<th class="head"><p>Fetch with</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#ds-models"><span class="std std-ref">Model weights</span></a> — LM + Shorkie + Random_Init</p></td>
+<td><p>0.97 GB</p></td>
+<td><p>public</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--models</span> <span class="pre">all</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ds-lm-variants"><span class="std std-ref">LM variants</span></a> — other corpus tiers</p></td>
+<td><p>286 MB</p></td>
+<td><p>public</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--models</span> <span class="pre">lm-variants</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ds-genome"><span class="std std-ref">R64 reference genome</span></a> — FASTA + GTF</p></td>
+<td><p>22 MB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--genome</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ds-corpora"><span class="std std-ref">LM corpus — R64</span></a></p></td>
+<td><p>23 MB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--lm-corpus</span> <span class="pre">R64</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ds-corpora"><span class="std std-ref">LM corpus — 80_strains</span></a></p></td>
+<td><p>1.5 GB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--lm-corpus</span> <span class="pre">80_strains</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ds-corpora"><span class="std std-ref">LM corpus — 165_Saccharomycetales</span></a> ⭐</p></td>
+<td><p>3.7 GB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--lm-corpus</span> <span class="pre">165_Saccharomycetales</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ds-corpora"><span class="std std-ref">LM corpus — 1341_Fungus</span></a></p></td>
+<td><p>42.5 GB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--lm-corpus</span> <span class="pre">1341_Fungus</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ds-supervised"><span class="std std-ref">Supervised tracks</span></a> — BigWigs</p></td>
+<td><p>~93 GB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--supervised</span> <span class="pre">bigwigs</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ds-supervised"><span class="std std-ref">Supervised tracks</span></a> — TFRecords</p></td>
+<td><p>~10 GB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--supervised</span> <span class="pre">tfrecords</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ds-eqtl"><span class="std std-ref">cis-eQTL benchmark</span></a></p></td>
+<td><p>~64 MB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--eqtl</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ds-mpra"><span class="std std-ref">MPRA benchmark</span></a></p></td>
+<td><p>~1.6 GB</p></td>
+<td><p>requester-pays</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data/download.sh</span> <span class="pre">--mpra</span> <span class="pre">all</span> <span class="pre">-u</span> <span class="pre">PROJECT</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>⭐ = the corpus Shorkie_LM was actually pretrained on.</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> to any of these to see precisely what would be fetched, without fetching it.</p>
+</section>
+<section id="two-buckets-two-access-models">
+<h2>Two buckets, two access models<a class="headerlink" href="#two-buckets-two-access-models" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 18.0%" />
+<col style="width: 56.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Bucket</p></th>
+<th class="head"><p>Access</p></th>
+<th class="head"><p>Holds</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gs://seqnn-share</span></code></p></td>
+<td><p><strong>Public</strong></p></td>
+<td><p>Model weights, under <code class="docutils literal notranslate"><span class="pre">shorkie_models/</span></code>. Plain HTTPS works — no account, no <code class="docutils literal notranslate"><span class="pre">-u</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper</span></code></p></td>
+<td><p><strong>Requester-pays</strong></p></td>
+<td><p>Genome, corpora, supervised tracks, benchmark scores. Needs <code class="docutils literal notranslate"><span class="pre">gsutil</span></code> and a
+<strong>billing-enabled</strong> GCP project via <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">PROJECT</span></code>; you pay egress only.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>If you cannot use Google Cloud</strong>, requester-pays is a hard barrier — it requires a billing-enabled
+project, which is impractical in some regions. The models and pretraining corpora are therefore also
+published independently of Google infrastructure, via
+<code class="docutils literal notranslate"><span class="pre">scripts/00_setup/zenodo_upload.py</span></code>. If the mirror you need isn’t up yet, please
+<a class="reference external" href="https://github.com/calico/shorkie-paper/issues">open an issue</a> — that is a supported request, not
+an imposition.</p>
+<p>Two things are always reachable regardless: the <strong>species lists</strong> with every NCBI accession
+(<a class="reference external" href="https://github.com/calico/shorkie-paper/tree/main/data/species_lists">data/species_lists/</a>) and
+the <strong>corpus build pipeline</strong> (<code class="docutils literal notranslate"><span class="pre">scripts/01_data_build/lm_corpus/</span></code>), which together let you rebuild
+any tier from public sources.</p>
+</div>
+</section>
+<section id="model-weights">
+<span id="ds-models"></span><h2>Model weights<a class="headerlink" href="#model-weights" title="Link to this heading">¶</a></h2>
+<p><strong>0.97 GB total · public · no account needed.</strong> Full detail, including per-fold direct links and MD5s,
+is on <a class="reference internal" href="models.html"><span class="doc">Released models</span></a>.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 12.0%" />
+<col style="width: 16.0%" />
+<col style="width: 42.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Folds</p></th>
+<th class="head"><p>Bucket path</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Shorkie_LM</p></td>
+<td><p>55 MB</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs://seqnn-share/shorkie_models/shorkie_lm/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Shorkie</strong></p></td>
+<td><p>461 MB</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs://seqnn-share/shorkie_models/shorkie/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Shorkie_Random_Init</p></td>
+<td><p>455 MB</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gs://seqnn-share/shorkie_models/shorkie_random_init/</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every file is MD5-verified against the manifest as it downloads.</p>
+</section>
+<section id="lm-checkpoints-for-the-other-corpus-tiers">
+<span id="ds-lm-variants"></span><h2>LM checkpoints for the other corpus tiers<a class="headerlink" href="#lm-checkpoints-for-the-other-corpus-tiers" title="Link to this heading">¶</a></h2>
+<p><strong>286 MB · public.</strong> Language models pretrained on the <em>other</em> corpus tiers — the corpus-scaling
+comparison behind Figure 1F/G, plus the largest-corpus model at the released architecture.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 20.0%" />
+<col style="width: 22.0%" />
+<col style="width: 18.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variant</p></th>
+<th class="head"><p>Corpus</p></th>
+<th class="head"><p>Architecture</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">num_features</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">R64_yeast__unet_small</span></code></p></td>
+<td><p>R64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unet_small</span></code></p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">80_strains__unet_small</span></code></p></td>
+<td><p>80_strains</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unet_small</span></code></p></td>
+<td><p>85</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">165_Saccharomycetales__unet_small</span></code></p></td>
+<td><p>165_Saccharomycetales</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unet_small</span></code></p></td>
+<td><p>170</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1341_Fungus__unet_small</span></code></p></td>
+<td><p>1341_Fungus</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unet_small</span></code></p></td>
+<td><p>1366</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1341_Fungus__unet_small_bert_drop</span></code></p></td>
+<td><p>1341_Fungus</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unet_small_bert_drop</span></code></p></td>
+<td><p>1366</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These are <strong>not</strong> drop-in replacements for the released Shorkie_LM, which is 165_Saccharomycetales +
+<code class="docutils literal notranslate"><span class="pre">unet_small_bert_drop</span></code>. The four <code class="docutils literal notranslate"><span class="pre">unet_small</span></code> runs are a different architecture and are meaningful
+compared against <em>each other</em>. The one genuine alternative is <code class="docutils literal notranslate"><span class="pre">1341_Fungus__unet_small_bert_drop</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">num_features</span></code> is <strong>not stored in params.json</strong> and must be set at load time — it is
+<code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">(DNA)</span> <span class="pre">+</span> <span class="pre">num_species</span> <span class="pre">+</span> <span class="pre">1</span></code>. Getting it wrong raises
+<a class="reference internal" href="troubleshooting.html#axes-dont-match"><span class="std std-ref">“axes don’t match array”</span></a>.</p>
+</div>
+</section>
+<section id="r64-reference-genome">
+<span id="ds-genome"></span><h2>R64 reference genome<a class="headerlink" href="#r64-reference-genome" title="Link to this heading">¶</a></h2>
+<p><strong>22 MB.</strong> Required by <code class="docutils literal notranslate"><span class="pre">examples/</span></code> and <code class="docutils literal notranslate"><span class="pre">minimal_example/</span></code>.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44.0%" />
+<col style="width: 12.0%" />
+<col style="width: 44.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GCA_000146045_2.cleaned.fasta</span></code></p></td>
+<td><p>11.7 MB</p></td>
+<td><p>Chromosomes <code class="docutils literal notranslate"><span class="pre">chrI</span></code>…<code class="docutils literal notranslate"><span class="pre">chrXVI</span></code>. A <code class="docutils literal notranslate"><span class="pre">.fai</span></code> index is built on download.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">GCA_000146045_2.59.gtf</span></code></p></td>
+<td><p>10.0 MB</p></td>
+<td><p>Ensembl Fungi release 59. Sequences <code class="docutils literal notranslate"><span class="pre">I</span></code>…<code class="docutils literal notranslate"><span class="pre">XVI</span></code> (plus <code class="docutils literal notranslate"><span class="pre">Mito</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The two files use <strong>different chromosome naming</strong>, and the code depends on it. Use these released
+copies — a genome fetched straight from Ensembl or SGD will not match, and every lookup will fail.
+See <a class="reference internal" href="troubleshooting.html"><span class="doc">Troubleshooting</span></a>.</p>
+<p>The released FASTA is the DUST-softmasked variant (892,009 repeat bases lowercased), which is
+equivalent for modelling: the encoder uppercases before one-hot encoding.</p>
+</div>
+</section>
+<section id="pretraining-corpora">
+<span id="ds-corpora"></span><h2>Pretraining corpora<a class="headerlink" href="#pretraining-corpora" title="Link to this heading">¶</a></h2>
+<p>Four tiers of increasing phylogenetic breadth, each with raw genome assemblies and matched 16,384 bp
+TFRecords. <strong>Shorkie_LM was pretrained on 165_Saccharomycetales</strong>; the others back the ablations.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 12.0%" />
+<col style="width: 16.0%" />
+<col style="width: 14.0%" />
+<col style="width: 14.0%" />
+<col style="width: 14.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tier</p></th>
+<th class="head"><p>Genomes</p></th>
+<th class="head"><p>Train seqs</p></th>
+<th class="head"><p>Genomes</p></th>
+<th class="head"><p>TFRecords</p></th>
+<th class="head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>R64</p></td>
+<td><p>1</p></td>
+<td><p>1,201</p></td>
+<td><p>12 MB</p></td>
+<td><p>12 MB</p></td>
+<td><p>23 MB</p></td>
+</tr>
+<tr class="row-odd"><td><p>80_strains</p></td>
+<td><p>80</p></td>
+<td><p>102,315</p></td>
+<td><p>968 MB</p></td>
+<td><p>533 MB</p></td>
+<td><p>1.5 GB</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>165_Saccharomycetales</strong> ⭐</p></td>
+<td><p>165</p></td>
+<td><p>385,551</p></td>
+<td><p>1.97 GB</p></td>
+<td><p>1.73 GB</p></td>
+<td><p>3.7 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>1341_Fungus</p></td>
+<td><p>1,361</p></td>
+<td><p>625,355</p></td>
+<td><p>39.3 GB</p></td>
+<td><p>3.15 GB</p></td>
+<td><p>42.5 GB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Paths follow <code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper/data/unsupervised/{genome,processed}/&lt;tier&gt;/</span></code>.</p>
+<p><strong>The held-out split is shared across all four tiers</strong> and drawn from <em>S. cerevisiae</em> R64 only, split by
+<strong>whole chromosome</strong>:</p>
+<ul class="simple">
+<li><p><strong>valid</strong> — chrXI, chrXIII, chrXV</p></li>
+<li><p><strong>test</strong> — chrXII, chrXIV, chrXVI</p></li>
+<li><p>chrXI–XVI are excluded from training in every tier</p></li>
+</ul>
+<p>Splitting by whole chromosome rather than random windows is what keeps the evaluation honest. If you use
+these corpora as a baseline, <strong>keep this split</strong> — re-splitting randomly makes your numbers incomparable
+to the paper’s and leaks sequence between train and test.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>TFRecords are <strong>ZLIB-compressed</strong>. Read them with
+<code class="docutils literal notranslate"><span class="pre">tf.data.TFRecordDataset(path,</span> <span class="pre">compression_type=&quot;ZLIB&quot;)</span></code> — without it TensorFlow returns an empty
+dataset rather than raising.</p>
+<p><strong>``1341_Fungus`` nests one level deeper</strong> than the other three tiers, under a <code class="docutils literal notranslate"><span class="pre">1342_Fungus/</span></code>
+subdirectory (a different number), so a fixed-depth glob will miss its records. The public label is
+historical too: the cleaned corpus contains <strong>1,361</strong> assemblies.</p>
+</div>
+<p>Per-tier species lists with NCBI accessions are committed at <a class="reference external" href="https://github.com/calico/shorkie-paper/tree/main/data/species_lists">data/species_lists/</a>, so any tier can be rebuilt
+from public sources with <code class="docutils literal notranslate"><span class="pre">scripts/01_data_build/lm_corpus/</span></code>.</p>
+</section>
+<section id="supervised-tracks">
+<span id="ds-supervised"></span><h2>Supervised tracks<a class="headerlink" href="#supervised-tracks" title="Link to this heading">¶</a></h2>
+<p>The <strong>5,215-track</strong> dataset on S288C R64-3-1 at 16 bp resolution that Shorkie is fine-tuned on.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper/data/supervised/bigwigs/</span></code> — coverage tracks, <strong>~93 GB</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper/data/supervised/processed/</span></code> — 8-fold TFRecords, <strong>~10 GB</strong> (~1.3 GB per fold),
+plus <code class="docutils literal notranslate"><span class="pre">statistics.json</span></code>, <code class="docutils literal notranslate"><span class="pre">sequences.bed</span></code> and <code class="docutils literal notranslate"><span class="pre">targets.txt</span></code></p></li>
+</ul>
+<p>Sources:</p>
+<ul class="simple">
+<li><p><strong>Induction Dynamics Gene Expression Atlas (IDEA)</strong> — RNA-seq induction time-course samples, generated
+for this study by Calico Life Sciences (related to Hackett, S. R. <em>et al.</em>, <em>Mol Syst Biol</em>, 2020)</p></li>
+<li><p><strong>Yeast strain RNA-seq</strong> across diverse <em>S. cerevisiae</em> isolates (Caudal, É. <em>et al.</em>, <em>Nat Genet</em>, 2024)</p></li>
+<li><p><strong>ChIP-exo</strong> and <strong>ChIP-MNase</strong> (Rossi, M. J. <em>et al.</em>, <em>Nature</em>, 2021)</p></li>
+</ul>
+<p>The targets sheet is also committed at <a class="reference external" href="https://github.com/calico/shorkie-paper/blob/main/minimal_example/sheet.txt">minimal_example/sheet.txt</a>, so you can inspect the
+track metadata without downloading anything.</p>
+</section>
+<section id="cis-eqtl-benchmark">
+<span id="ds-eqtl"></span><h2>cis-eQTL benchmark<a class="headerlink" href="#cis-eqtl-benchmark" title="Link to this heading">¶</a></h2>
+<p><strong>~64 MB.</strong> Enough to regenerate Figure 7 on CPU without re-scoring.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper/eqtl/scores/</span></code> (~51 MB) — per-SNP scores for Shorkie / Shorkie_LM / Shorkie_Random_Init</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gs://shorkie-paper/eqtl/dream_eval/</span></code> (~13 MB) — DREAM-model baselines</p></li>
+</ul>
+<p>Three independent resources:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 12.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Study</p></th>
+<th class="head"><p>Variants</p></th>
+<th class="head"><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Caudal <em>et al.</em></p></td>
+<td><p>1,901</p></td>
+<td><p>Pan-transcriptome across ~1,000 isolates, <em>Nat Genet</em> 56, 1278–1287 (2024)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kita <em>et al.</em></p></td>
+<td><p>683</p></td>
+<td><p>High-resolution <em>cis</em>-regulatory mapping, <em>PNAS</em> 114 (2017)</p></td>
+</tr>
+<tr class="row-even"><td><p>Renganaath <em>et al.</em></p></td>
+<td><p>142</p></td>
+<td><p>MPRA-validated core-promoter variants, <em>eLife</em> 9, e62669 (2020)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mpra-benchmark">
+<span id="ds-mpra"></span><h2>MPRA benchmark<a class="headerlink" href="#mpra-benchmark" title="Link to this heading">¶</a></h2>
+<p><strong>~1.6 GB.</strong> Enough to regenerate Figure 6 on CPU.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ground_truth/</span></code> — MAUDE expression for the held-out set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_subset_ids/</span></code> (~21 MB) and <code class="docutils literal notranslate"><span class="pre">scores/</span></code> (~1.6 GB) — cached Shorkie logSED</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dream/</span></code> — DREAM-RNN baseline output</p></li>
+</ul>
+<p>From the Random Promoter DREAM Challenge (Rafi, A. M. <em>et al.</em>, <em>Nat Biotechnol</em>, 2024): 71,103 held-out
+promoters spanning native, random, high/low-expression, “challenging”, SNV, motif-perturbation and
+motif-tiling categories.</p>
+</section>
+<section id="not-re-hosted">
+<h2>Not re-hosted<a class="headerlink" href="#not-re-hosted" title="Link to this heading">¶</a></h2>
+<p>Large third-party inputs are documented in the manifest (<code class="docutils literal notranslate"><span class="pre">external_raw</span></code>) but obtained from source:</p>
+<ul class="simple">
+<li><p>the 1011-yeast-genomes gVCF (~51 GB) — <a class="reference external" href="http://1002genomes.u-strasbg.fr/files/">1002 Yeast Genomes</a></p></li>
+<li><p>the full DREAM Challenge 2022 sequences and PrixFixe/DREAM-RNN weights —
+<a class="reference external" href="https://www.synapse.org/#!Synapse:syn28469146">Synapse syn28469146</a></p></li>
+</ul>
+</section>
+<section id="verifying-a-download">
+<h2>Verifying a download<a class="headerlink" href="#verifying-a-download" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/00_setup/verify_release.py<span class="w"> </span>-u<span class="w"> </span>&lt;your-gcp-project&gt;<span class="w"> </span>--strict
+</pre></div>
+</div>
+<p>Checks every catalogued artifact against the buckets — size and MD5 for models, non-empty prefixes for
+datasets. Model downloads are MD5-verified as they land; large dataset prefixes rely on gsutil’s transfer
+integrity check.</p>
+</section>
+<section id="licensing">
+<h2>Licensing<a class="headerlink" href="#licensing" title="Link to this heading">¶</a></h2>
+<p>Model weights and the data we derived (TFRecords, cached scores) are <strong>CC BY 4.0</strong>. The genome assemblies
+are third-party public data (Ensembl Fungi release 59 / NCBI GenBank) redistributed for reproducibility,
+under their original providers’ terms. Benchmark datasets carry their own terms. Repository code is
+Apache-2.0. → <a class="reference internal" href="license.html"><span class="doc">License</span></a> · <a class="reference internal" href="citation.html"><span class="doc">Citation</span></a></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="reproducing_figures.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Reproducing the paper figures</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="behind_scenes.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">How Shorkie was trained</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Kuan-Hao Chao and the Shorkie authors
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/calico/shorkie-paper" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.011.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.441.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Datasets</a><ul>
+<li><a class="reference internal" href="#at-a-glance">At a glance</a></li>
+<li><a class="reference internal" href="#two-buckets-two-access-models">Two buckets, two access models</a></li>
+<li><a class="reference internal" href="#model-weights">Model weights</a></li>
+<li><a class="reference internal" href="#lm-checkpoints-for-the-other-corpus-tiers">LM checkpoints for the other corpus tiers</a></li>
+<li><a class="reference internal" href="#r64-reference-genome">R64 reference genome</a></li>
+<li><a class="reference internal" href="#pretraining-corpora">Pretraining corpora</a></li>
+<li><a class="reference internal" href="#supervised-tracks">Supervised tracks</a></li>
+<li><a class="reference internal" href="#cis-eqtl-benchmark">cis-eQTL benchmark</a></li>
+<li><a class="reference internal" href="#mpra-benchmark">MPRA benchmark</a></li>
+<li><a class="reference internal" href="#not-re-hosted">Not re-hosted</a></li>
+<li><a class="reference internal" href="#verifying-a-download">Verifying a download</a></li>
+<li><a class="reference internal" href="#licensing">Licensing</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=9ef64fc1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>
