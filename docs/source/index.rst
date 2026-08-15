@@ -62,6 +62,13 @@ What you can do with Shorkie
       A figure-by-figure tour of the paper, each linked to an executed notebook
       that regenerates it and re-checks the published numbers.
 
+   .. grid-item-card:: 💾 Get the data
+      :link: content/data_resources
+      :link-type: doc
+
+      Every dataset curated for this study — models, four pretraining corpora,
+      reference genome, and the eQTL/MPRA benchmarks — with sizes and commands.
+
 ----
 
 Quick start
@@ -141,6 +148,7 @@ All three are public and catalogued with checksums — see :doc:`content/models`
 
    content/api
    content/faq
+   content/troubleshooting
    content/citation
    content/license
    content/contact
