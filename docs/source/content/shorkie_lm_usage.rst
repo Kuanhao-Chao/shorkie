@@ -18,7 +18,17 @@ Everything here runs on CPU.
 
 The LM is a single checkpoint, so it is loaded directly through
 ``baskerville.seqnn`` rather than the ensemble helper. ``num_features`` must be
-forced to 170 — the DNA channels plus the 166 species-identity channels.
+forced to 170 = **4 DNA + 1 + 165 species**.
+
+.. note::
+
+   The fifth channel is not a species channel. Every corpus in this repository
+   has ``num_features = n_species + 5`` (6 / 85 / 170 / 1366 for 1 / 80 / 165 /
+   1361 species), and a one-genome corpus needing six features is impossible
+   under "4 DNA + N species". ``N_SPECIES = 166`` in ``ensemble.py`` folds that
+   extra channel into the species block. No code shipped here ever writes it, and
+   it is zero on every inference path — the LM masks by zeroing the four DNA
+   channels, not by setting a mask channel.
 
 .. code-block:: python
 
@@ -96,6 +106,26 @@ embeddings are what Figure 2's motif and t-SNE analyses are built on.
 
 Turning Shorkie_LM into a coverage predictor for your own tracks is its own page:
 :doc:`finetuning`.
+
+Try it without installing anything
+----------------------------------
+
+`khchao.com/shorkie-lab/shorkie_lm <https://khchao.com/shorkie-lab/shorkie_lm/>`_
+runs this checkpoint's predictions over fourteen annotated yeast windows in the
+browser: masked-base distributions at every position, constraint drawn as
+``2 - entropy``, and the masked-motif and annotation-enrichment analyses. It is
+precomputed, so there is nothing to download.
+
+Two things it makes concrete that are easy to get wrong here:
+
+* **An unmasked forward pass is not a prediction.** The model can see the base it
+  is scoring and largely copies it (97.8% argmax). The number to quote comes from
+  masking — iteratively, at the 15% rate this checkpoint was trained with, which
+  gives **43.0% argmax and perplexity 3.380**.
+* **Masking a whole motif is a different task from the one it was trained on.**
+  Pretraining masks 15% of positions *scattered*; a contiguous 10 bp hole removes
+  the local context the model relies on, and it falls back to emitting the base
+  composition prior.
 
 Runnable notebooks
 ------------------
