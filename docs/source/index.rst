@@ -71,6 +71,36 @@ What you can do with Shorkie
 
 ----
 
+Explore the models in your browser
+----------------------------------
+
+Two interactive pages run the released checkpoints client-side — no install, no
+download, nothing to configure. They work over the same fourteen *S. cerevisiae*
+windows with the same curated annotation, so a result on one reads directly
+against the other.
+
+.. grid:: 1 1 2 2
+   :gutter: 3
+
+   .. grid-item-card:: 🎛️ Shorkie — the expression model
+      :link: https://khchao.com/shorkie-lab/shorkie/
+
+      *"How much does this base change the prediction?"* Five attribution
+      methods on one axis, a region traced back through every layer, an
+      occlusion map of what drives what, and every curated binding site knocked
+      out and measured.
+
+   .. grid-item-card:: 🧠 Shorkie_LM — the language model
+      :link: https://khchao.com/shorkie-lab/shorkie_lm/
+
+      *"How constrained is this base?"* The four-way distribution at all 16,384
+      positions, read as information content, tested against the annotation —
+      including what happens when a whole binding site is masked.
+
+Both are at `khchao.com/shorkie-lab <https://khchao.com/shorkie-lab/>`_.
+
+----
+
 Quick start
 -----------
 
